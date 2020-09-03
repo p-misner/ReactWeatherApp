@@ -1,15 +1,16 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import { API } from "./API";
+
+// import MyImage from './assets/dog.jpg';
+// import './index.css';
 
 const App = () => {
-	return (
-		<div>
-			<div>
-				<API />
-			</div>
-		</div>
-	);
+  return (
+    <div>
+        <div>Welcome to my-webpack-react-starter</div>
+        
+    </div>
+  );
 };
 
 ReactDOM.render(<App />, document.querySelector("#root"));
