@@ -180,7 +180,7 @@ I'm using [this article](https://codeburst.io/deploy-your-webpack-apps-to-heroku
 
 ### Step 1: Build
 
-run `npm build` to have a bundle.js file created. This is what will be running inside heroku
+run `npm build` to have a bundle.js file created. This is what will be running inside heroku. Also `npm install express --save-dev`
 
 ### Step 2: Express Server
 
