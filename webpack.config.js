@@ -50,6 +50,14 @@ module.exports = {
             },
         ],
     },
+    // devServer: {
+    //     contentBase: path.resolve(__dirname, "dist"),
+    //     port: 8888,
+    //     // Send API requests on localhost to API server get around CORS.
+    //     headers: {
+    //         "Access-Control-Allow-Origin": "*",
+    //     },
+    // },
     plugins: [
         new HtmlWebpackPlugin({
             template: __dirname + "/src/index.html",

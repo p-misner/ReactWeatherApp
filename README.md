@@ -174,7 +174,7 @@ npm run start
 
 # Deploying to Heroku
 
-I'm using [this article](https://codeburst.io/deploy-your-webpack-apps-to-heroku-in-3-simple-steps-4ae072af93a8) and [this article](https://daveceddia.com/deploy-react-express-app-heroku/) as a reference.
+I'm using [this article](https://codeburst.io/deploy-your-webpack-apps-to-heroku-in-3-simple-steps-4ae072af93a8) as a reference.
 
 ## Building an Express Server
 
@@ -220,3 +220,19 @@ Inside the package.json file add these two new script directions. Because heroku
 ```
 
 ## Connecting to Heroku
+
+### Creating Heroku Git Repo
+
+Once the Heroku CLI is installed, follow these steps to launch on heroku. Afer final step it should say "Build Succeeded" if everything is kinda working correctly
+
+```
+heroku create //this makes a new heroku git repo
+heroku git:remote --app <your-heroku-app-name>
+git add . && git commit -m "initial commit"
+git push heroku master
+
+```
+
+### Issues?
+
+Heroku says the build suceeded but nothing happens on the actual site? Run `heroku logs --tail` to get more detail on whats happening in the app.

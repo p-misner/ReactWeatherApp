@@ -1,13 +1,12 @@
 import React from "react";
 import ReactDOM from "react-dom";
-
+import Form from "./Form.js";
 // import MyImage from './assets/dog.jpg';
-import "./style.css";
 
 const App = () => {
 	return (
 		<div>
-			<div>Welcome to my-webpack-react-starter</div>
+			<Form />
 		</div>
 	);
 };
