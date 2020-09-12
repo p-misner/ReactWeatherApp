@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { openWeatherKey, googlePlacesKey } from "../apiKeys";
+import { openWeatherKey } from "../apiKeys";
 import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
-// const loadScript = (url) => {
-// 	let script = document.createElement("script");
-// 	script.type = "text/javascript";
-// 	script.crossOrigin = "";
-// 	script.src = url;
-// 	document.getElementsByTagName("head")[0].appendChild(script);
-// };
 
-function Form() {
+export default function Form(){
+	
 	const [apiContent, setApi] = useState("wait");
 	const [city, setCity] = useState("Reno");
 	const [submitCity, setSubmitCity] = useState("Reno");
 	const [unit, setUnit] = useState("imperial");
+	const [latlong, setLatLong] = useState(["",""])
 
 	let openWeatherCall =
 		"https://api.openweathermap.org/data/2.5/weather?q=" +
@@ -23,46 +18,68 @@ function Form() {
 		"&appid=" +
 		openWeatherKey;
 
-	let placesCall =
-		"https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Cambridge&types=(cities)&key=" +
-		googlePlacesKey;
-
 	useEffect(() => {
 		fetch(openWeatherCall)
 			.then((response) => response.json())
 			.then((json) => setApi([json, json.main]));
-		// console.log(apiContent[0]);
 	}, [unit, submitCity]);
 
-	// useEffect(() => {
-	// 	loadScript(
-	// 		`https://maps.googleapis.com/maps/api/place/autocomplete/json?input=Cambridge&types=(cities)&key=${googlePlacesKey}`
-	// 	);
-	// 	fetch(placesCall)
-	// 		.then((response) => response.json())
-	// 		.then((json) => console.log(json.predictions));
-	// 	// console.log(apiContent[0]);
-	// }, []);
-
+	
 	function getForecast(e) {
 		e.preventDefault();
 		setSubmitCity(city);
 	}
+	// const handleSelect = async value => {
+	// 	let results = await geocodeByAddress(value);
+	// 	console.log()
+	// }
+
+	function handleSelect(e) {
+		setCity(e);
+		setSubmitCity(e);
+
+	}
+	
+	const searchOptions = {
+		types: ['(cities)']
+	}
 
 	return (
-		<div className="content">
-			<PlacesAutocomplete value={city} onChange={setCity} onSelect={}>
-				
-
-			</PlacesAutocomplete>
+		<div className="content" >
+			
 			<form onSubmit={getForecast}>
-				<input
-					type="text"
-					placeholder="enter city"
-					name="city"
-					value={city}
-					onChange={(e) => setCity(e.target.value)}
-				/>
+				
+				<PlacesAutocomplete
+				value={city}
+				onChange={setCity}
+				searchOptions={searchOptions}
+				onSelect={handleSelect}
+			>
+				
+			{({getInputProps, suggestions, getSuggestionItemProps, loading })=> 
+				(
+					<div>
+						<input { ...getInputProps({placeholder: 'enter city'})} />
+						<div>
+							{loading ? <div> ... loading </div> : null}
+								{suggestions.map((suggestion) =>{
+								const style = {
+									backgroundColor: suggestion.active ? "#ffb549" : "transparent"
+								}
+								return (
+									<div key={suggestion.placeId} {...getSuggestionItemProps(suggestion,{style})}>
+										{suggestion.description}
+									</div>
+								);
+							})}
+							
+						</div>
+
+					</div>
+
+				)
+			}
+			</PlacesAutocomplete>
 				<label htmlFor="">
 					<input
 						type="radio"
@@ -94,4 +111,3 @@ function Form() {
 	);
 }
 
-export default Form;
