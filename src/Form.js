@@ -5,10 +5,11 @@ import Place from "./Place";
 import Input from "./Input";
 import TempChange from "./TempChange";
 import WeatherImage from "./WeatherImage";
+import { states } from "./data/states";
+
 export default function Form() {
-	// const [apiContent, setApi] = useState("wait");
 	const [apiContent2, setApi2] = useState("wait");
-	const [city, setCity] = useState("Reno, NV, USA");
+	const [city, setCity] = useState("Reno | Nevada");
 	const [submitCity, setSubmitCity] = useState("Reno, NV, USA");
 	const [unit, setUnit] = useState("imperial");
 	const [coords, setCoords] = useState({
@@ -16,20 +17,7 @@ export default function Form() {
 		long: -94.037689,
 	});
 
-	let openWeatherCall =
-		"https://api.openweathermap.org/data/2.5/weather?q=" +
-		encodeURIComponent(submitCity) +
-		"&units=" +
-		unit +
-		"&appid=" +
-		openWeatherKey;
-	let oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&appid=${openWeatherKey}`;
-
-	// useEffect(() => {
-	// 	fetch(openWeatherCall)
-	// 		.then((response) => response.json())
-	// 		.then((json) => setApi([json, json.main, json.weather]));
-	// }, [unit, submitCity]);
+	let oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=${unit}&appid=${openWeatherKey}`;
 
 	useEffect(() => {
 		fetch(oneCall)
@@ -45,8 +33,16 @@ export default function Form() {
 	}
 
 	function handleSelect(e) {
+		let length = e.split(",").map((i) => i.trim());
+		let city = e.split(",")[0];
+		let state = length.length > 2 ? length[1] : "none";
+		let country = length[length.length - 1];
 		geoCode(e);
-		setCity(e);
+		setCity(
+			`${city} |  ${
+				state != "none" && country == "USA" ? states[0][state] : country
+			}`
+		);
 		setSubmitCity(e);
 	}
 
@@ -61,34 +57,10 @@ export default function Form() {
 	}
 
 	const length = submitCity.split(",").map((i) => i.trim());
-	// const iconimg = Array.from(apiContent[2])[0].icon;
-	// const iconimg2 = ;
-	// var hold1 = apiContent2[1];
-	// try {
-	// 	console.log(apiContent2[1].weather[0].icon);
-	// } catch (err) {
-	// 	console.log(err);
-	// }
-	/*	<h2>
-				weather conditions:
-				{Array.from(apiContent[2]).map((condition) => {
-					return (
-						<p key={condition.description}>
-							{" "}
-							{condition.main} ({condition.description})
-						</p>
-					);
-				})}
-			</h2>*/
 
 	return (
 		<div className="content">
 			<form onSubmit={getForecast}>
-				<Place
-					city={submitCity.split(",")[0]}
-					state={length.length > 2 ? length[1] : "none"}
-					country={length[length.length - 1]}
-				/>
 				<Input
 					city={city}
 					setCity={setCity}
