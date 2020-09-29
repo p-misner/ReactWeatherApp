@@ -1,10 +1,11 @@
-import React from "react";
-import PlacesAutocomplete, {geocodeByAddress, getLatLng} from 'react-places-autocomplete';
+import React, { useState } from "react";
+import PlacesAutocomplete from "react-places-autocomplete";
 
 export default function Input(props) {
 	const searchOptions = {
-		types: ['(cities)']
-	}
+		types: ["(cities)"],
+	};
+
 	return (
 		<PlacesAutocomplete
 			value={props.city}
