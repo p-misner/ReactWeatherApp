@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from "react";
 import { openWeatherKey } from "../apiKeys";
 import { geocodeByAddress } from "react-places-autocomplete";
-import Place from "./Place";
+// import Place from "./Place";
 import Input from "./Input";
 import TempChange from "./TempChange";
 import WeatherImage from "./WeatherImage";
 import { states } from "./data/states";
-
+import style from "./style/style.css";
 export default function Form() {
 	const [apiContent2, setApi2] = useState("wait");
 	const [city, setCity] = useState("Reno | Nevada");
@@ -56,10 +56,10 @@ export default function Form() {
 		}
 	}
 
-	const length = submitCity.split(",").map((i) => i.trim());
+	// const length = submitCity.split(",").map((i) => i.trim());
 
 	return (
-		<div className="content">
+		<div className={style.content}>
 			<form onSubmit={getForecast}>
 				<Input
 					city={city}
@@ -67,11 +67,13 @@ export default function Form() {
 					handleSelect={handleSelect}
 					coords={coords}
 				/>
-				<TempChange unit={unit} setUnit={setUnit} />
 			</form>
-			<h2>current weather: {apiContent2[1].temp}</h2>
-			<h2>weather conditions: {apiContent2[2].main}</h2>
+			<h2>
+				{Math.round(apiContent2[1].temp)}
+				<TempChange unit={unit} setUnit={setUnit} />
+			</h2>
 			<WeatherImage icon={apiContent2[2].icon}></WeatherImage>
+			<h3>{apiContent2[2].main}</h3>
 		</div>
 	);
 }

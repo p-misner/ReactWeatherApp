@@ -20,7 +20,7 @@
     "autoprefixer": "^9.8.6",
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.1.0",
-    "css-loader": "^4.2.2",
+    "css-loader": "^4.3.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",

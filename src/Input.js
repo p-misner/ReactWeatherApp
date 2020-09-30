@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import PlacesAutocomplete from "react-places-autocomplete";
-
+import style from "./style/style.css";
 export default function Input(props) {
 	const searchOptions = {
 		types: ["(cities)"],
@@ -21,16 +21,22 @@ export default function Input(props) {
 			}) => (
 				<div>
 					<input {...getInputProps({ placeholder: "enter city" })} />
-					<div>
+					<div className={style.suggestionList}>
 						{loading ? <div> ... loading </div> : null}
-						{suggestions.map((suggestion) => {
+						{suggestions.map((suggestion, i) => {
 							const style = {
-								backgroundColor: suggestion.active
-									? "#ffb549"
-									: "transparent",
+								opacity: suggestion.active ? "0.8" : "0.4",
+								maxWidth: "500px",
+								minWidth: "250px",
+								width: "40vw",
+								margin: "0 auto",
+								textAlign: "center",
+								left: "20vw",
+								top: -10 + 15 * i,
 							};
 							return (
 								<div
+									className={style.suggestionss}
 									key={suggestion.placeId}
 									{...getSuggestionItemProps(suggestion, {
 										style,

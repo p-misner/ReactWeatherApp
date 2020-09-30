@@ -1,0 +1,73 @@
+body {
+	font-size: 1em;
+	font-family: "Poppins", sans-serif;
+}
+h2,
+h3 {
+	text-align: center;
+}
+h2 {
+	font-size: 3em;
+	font-weight: 600;
+	margin-bottom: 0;
+	margin-top: 100px;
+}
+h3 {
+	margin-top: 0;
+	font-size: 2.5em;
+	font-weight: 400;
+}
+
+.content {
+	width: 80vw;
+	min-width: 200px;
+	max-width: 1000px;
+	margin: 50px auto 10px auto;
+	/*background-color: #d3dceb;*/
+	padding: 20px;
+}
+
+input[type="text"] {
+	font-family: "Poppins", sans-serif;
+
+	min-width: 200px;
+	max-width: 1000px;
+	width: 80%;
+	margin: 0 auto;
+	display: block;
+	text-align: center;
+	font-size: 2.5em;
+	font-weight: 400;
+	border: none;
+	background-color: transparent;
+}
+
+input + label {
+	opacity: 0.2;
+}
+input:checked + label {
+	opacity: 1;
+}
+label {
+	cursor: pointer;
+}
+input[type="radio"] {
+	visibility: hidden;
+}
+.suggestionList {
+	position: relative;
+	top: 20px;
+}
+.suggestionList div {
+	position: absolute;
+}
+.temp {
+	display: inline-block;
+}
+
+img {
+	width: 300px;
+	height: 300px;
+	margin: 0 auto;
+	display: block;
+}
