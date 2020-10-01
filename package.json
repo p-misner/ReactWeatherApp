@@ -5,10 +5,10 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --open --hot --mode development",
+    "dev": "webpack-dev-server --open --hot --mode development --env.OPENWEATHER=27501b6f7fca2abcdc9d68dfb303cb7b",
     "start": "node server.js",
-    "heroku-postbuild": "webpack -p",
-    "build": "webpack --mode production"
+    "heroku-postbuild": "webpack -p --env.OPENWEATHER=27501b6f7fca2abcdc9d68dfb303cb7b",
+    "build": "webpack --mode production --env.OPENWEATHER=27501b6f7fca2abcdc9d68dfb303cb7b "
   },
   "keywords": [],
   "author": "",
@@ -21,6 +21,7 @@
     "babel-cli": "^6.26.0",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
+    "dotenv": "^8.2.0",
     "eslint-config-prettier": "^6.11.0",
     "eslint-plugin-import": "^2.22.0",
     "eslint-plugin-jsx-a11y": "^6.3.1",

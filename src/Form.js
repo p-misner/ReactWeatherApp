@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { openWeatherKey } from "../apiKeys";
+// import { openWeatherKey } from "../apiKeys";
 import { geocodeByAddress } from "react-places-autocomplete";
 // import Place from "./Place";
 import Input from "./Input";
@@ -17,7 +17,7 @@ export default function Form() {
 		long: -94.037689,
 	});
 
-	let oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=${unit}&appid=${openWeatherKey}`;
+	let oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=${unit}&appid=${process.env.OPENWEATHER}`;
 
 	useEffect(() => {
 		fetch(oneCall)
