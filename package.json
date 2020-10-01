@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "webpack-dev-server --open --hot --mode development --env.OPENWEATHER=27501b6f7fca2abcdc9d68dfb303cb7b",
     "start": "node server.js",
-    "heroku-postbuild": "webpack -p ",
+    "heroku-postbuild": "webpack -p",
     "build": "webpack --mode production --env.OPENWEATHER=27501b6f7fca2abcdc9d68dfb303cb7b "
   },
   "keywords": [],
