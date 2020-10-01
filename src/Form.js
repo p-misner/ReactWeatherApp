@@ -17,7 +17,7 @@ export default function Form() {
 		long: -94.037689,
 	});
 
-	let oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=${unit}&appid=${process.env.OPENWEATHER}`;
+	let oneCall = `https://api.openweathermap.org/data/2.5/onecall?lat=${coords.lat}&lon=${coords.long}&units=${unit}&appid=27501b6f7fca2abcdc9d68dfb303cb7b`;
 
 	useEffect(() => {
 		fetch(oneCall)
