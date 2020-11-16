@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "webpack-dev-server --open --hot --mode development --env.OPENWEATHER=27501b6f7fca2abcdc9d68dfb303cb7b",
+    "dev": "webpack-dev-server --open --hot --mode development",
     "start": "node server.js",
     "heroku-postbuild": "webpack -p",
     "build": "webpack --mode production "
